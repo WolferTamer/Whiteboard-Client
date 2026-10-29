@@ -17,7 +17,11 @@ interface Stroke {
   width: number;
 }
 
-export default function CanvasController() {
+export default function CanvasController({
+  connected,
+}: {
+  connected: boolean;
+}) {
   /* Reference to the Canvas element which we use to draw */
   const canvasRef = useRef<HTMLCanvasElement>(null);
   /* The current selected stroke width */
@@ -217,6 +221,8 @@ export default function CanvasController() {
         colorValue={`#${Math.floor(color.r).toString(16)}${Math.floor(color.g).toString(16)}${Math.floor(color.b).toString(16)}`}
         onEraserClicked={onEraserClicked}
         onPenClicked={onPenClicked}
+        tool={tool}
+        connected={connected}
       />
       <canvas ref={canvasRef} width="1920" height="1080" />
     </div>
